@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.pedroPathing;
 
+import com.pedropathing.control.PIDFCoefficients;
+import com.pedropathing.control.PredictiveBrakingCoefficients;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
@@ -11,20 +13,27 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Constants {
-    public static FollowerConstants followerConstants = new FollowerConstants().mass(8);
+    public static FollowerConstants followerConstants = new FollowerConstants()
+            .mass(8)
+            .centripetalScaling(0)
+            .headingPIDFCoefficients(new PIDFCoefficients(1.0, 0, 0, 0))
+            .translationalPIDFCoefficients(new PIDFCoefficients(0.1, 0, 0.01, 0))
+            .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.0441, 0.00124));
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
 
     public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
-            .rightFrontMotorName("rf")
-            .rightRearMotorName("rr")
-            .leftRearMotorName("lr")
-            .leftFrontMotorName("lf")
-            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
+            .rightFrontMotorName("lr")   // was "rf"
+            .rightRearMotorName("lf")    // was "rr"
+            .leftRearMotorName("rf")     // was "lr"
+            .leftFrontMotorName("rr")    // was "lf"
+            .leftFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .leftRearMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+            .rightRearMotorDirection(DcMotorSimple.Direction.REVERSE)
+            .xVelocity(63.143)
+            .yVelocity(52.412);
 
     public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
             .leftPodY(3.5)
@@ -33,9 +42,9 @@ public class Constants {
             .leftEncoder_HardwareMapName("rf")
             .rightEncoder_HardwareMapName("lr")
             .strafeEncoder_HardwareMapName("rr")
-            .leftEncoderDirection(Encoder.REVERSE)
-            .rightEncoderDirection(Encoder.REVERSE)
-            .strafeEncoderDirection(Encoder.REVERSE)
+            .leftEncoderDirection(Encoder.FORWARD)
+            .rightEncoderDirection(Encoder.FORWARD)
+            .strafeEncoderDirection(Encoder.FORWARD)
             .forwardTicksToInches(0.00201)
             .strafeTicksToInches(0.00201)
             .turnTicksToInches(0.00192);
