@@ -38,19 +38,8 @@ public class Constants {
             .strafeEncoder_HardwareMapName("rr")
             .leftEncoderDirection(Encoder.REVERSE)
             .rightEncoderDirection(Encoder.REVERSE)
-            .strafeEncoderDirection(Encoder.REVERSE);
-
-//    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
-//            .rightFrontMotorName("rf")
-//            .rightRearMotorName("rr")
-//            .leftRearMotorName("lr")
-//            .leftFrontMotorName("lf")
-//            .leftFrontEncoderDirection(Encoder.REVERSE)
-//            .leftRearEncoderDirection(Encoder.REVERSE)
-//            .rightFrontEncoderDirection(Encoder.FORWARD)
-//            .rightRearEncoderDirection(Encoder.FORWARD)
-//            .robotWidth(12.5)
-//            .robotLength(10.25);
+            .strafeEncoderDirection(Encoder.REVERSE)
+            .forwardTicksToInches(7.979*Math.pow(10, -4));
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
