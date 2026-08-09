@@ -80,8 +80,6 @@ public class Tuning extends SelectableOpMode {
                 p.add("Line", Line::new);
                 p.add("Triangle", Triangle::new);
                 p.add("Circle", Circle::new);
-                p.add("Square", Square::new);
-                p.add("Axis Map Test", AxisMapTest::new);
             });
             s.folder("Swerve", p-> {
                 p.add("Analog Min / Max Tuner", AnalogMinMaxTuner::new);
@@ -1791,89 +1789,5 @@ class Drawing {
      */
     public static void sendPacket() {
         panelsField.update();
-    }
-}
-
-class AxisMapTest extends OpMode {
-    private final ElapsedTime t = new ElapsedTime();
-    private int axis = 0, phase = 0;
-    private Pose base; private double baseH; private String out = "";
-    private static final double[][] C = {{1,0,0},{0,1,0},{0,0,1}};
-    private static final String[] N = {"FWD", "LEFT", "CCW"};
-
-    @Override
-    public void init() {
-
-    }
-
-    @Override public void start() {
-        follower.startTeleopDrive(true); follower.update();   // brake mode
-        axis = 0; phase = 0; out = "";
-    }
-
-    @Override public void loop() {
-        follower.update();
-        switch (phase) {
-            case 0:
-                if (gamepad1.a && axis < 3) {
-                    base = follower.getPose(); baseH = follower.getTotalHeading();
-                    follower.setTeleOpDrive(C[axis][0], C[axis][1], C[axis][2], true);
-                    t.reset(); phase = 1;
-                }
-                break;
-            case 1:
-                if (t.milliseconds() > 700) {
-                    follower.setTeleOpDrive(0,0,0,true);
-                    Pose d = follower.getPose();
-                    out += String.format("%s(%+.1f,%+.1f,%+.2f) ", N[axis],
-                            d.getX()-base.getX(), d.getY()-base.getY(),
-                            follower.getTotalHeading()-baseH);
-                    t.reset(); phase = 2;
-                }
-                break;
-            case 2:
-                if (t.milliseconds() > 1000) { axis++; phase = (axis < 3) ? 0 : 3; }
-                break;
-        }
-        telemetry.addData("status", phase == 3 ? "DONE" : (phase == 0 ? "press A" : N[axis]));
-        telemetry.addData("results", out);
-        telemetry.addLine("want FWD(+,0,0) LEFT(0,+,0) CCW(0,0,+)");
-        telemetry.update();
-    }
-}
-
-class Square extends OpMode {
-    private PathChain square;
-
-    @Override
-    public void init() {
-        follower.setStartingPose(new Pose(48, 48, 0));
-    }
-
-    @Override
-    public void start() {
-        follower.setMaxPower(0.6); // old rollers: less slip, cleaner demo
-        square = follower.pathBuilder()
-                .addPath(new BezierLine(new Pose(48, 48),  new Pose(96, 48)))
-                .setConstantHeadingInterpolation(0)
-                .addPath(new BezierLine(new Pose(96, 48),  new Pose(96, 96)))
-                .setConstantHeadingInterpolation(Math.PI / 2)
-                .addPath(new BezierLine(new Pose(96, 96),  new Pose(48, 96)))
-                .setConstantHeadingInterpolation(Math.PI)
-                .addPath(new BezierLine(new Pose(48, 96),  new Pose(48, 48)))
-                .setConstantHeadingInterpolation(-Math.PI / 2)
-                .build();
-        follower.followPath(square);
-    }
-
-    @Override
-    public void loop() {
-        follower.update();
-        drawCurrentAndHistory();
-        if (follower.atParametricEnd()) {
-            follower.followPath(square, true);
-        }
-        telemetryM.debug("square: laps continuous");
-        telemetryM.update(telemetry);
     }
 }
