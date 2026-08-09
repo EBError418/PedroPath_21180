@@ -5,7 +5,7 @@ import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
 import com.pedropathing.ftc.drivetrains.MecanumConstants;
 import com.pedropathing.ftc.localization.Encoder;
-import com.pedropathing.ftc.localization.constants.DriveEncoderConstants;
+import com.pedropathing.ftc.localization.constants.ThreeWheelConstants;
 import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -26,35 +26,37 @@ public class Constants {
             .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
             .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
 
-//    public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
-//            .forwardTicksToInches(.001989436789)
-//            .strafeTicksToInches(.001989436789)
-//            .turnTicksToInches(.001989436789)
-//            .leftPodY(3.5)
-//            .rightPodY(-3.5)
-//            .strafePodX(-8)
-//            .leftEncoder_HardwareMapName("rr")
-//            .rightEncoder_HardwareMapName("lr")
-//            .strafeEncoder_HardwareMapName("lf")
-//            .leftEncoderDirection(Encoder.FORWARD)
-//            .rightEncoderDirection(Encoder.FORWARD)
-//            .strafeEncoderDirection(Encoder.FORWARD);
+    public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
+            .forwardTicksToInches(.001989436789)
+            .strafeTicksToInches(.001989436789)
+            .turnTicksToInches(.001989436789)
+            .leftPodY(3.5)
+            .rightPodY(-3.5)
+            .strafePodX(-8)
+            .leftEncoder_HardwareMapName("rf")
+            .rightEncoder_HardwareMapName("lr")
+            .strafeEncoder_HardwareMapName("rr")
+            .leftEncoderDirection(Encoder.FORWARD)
+            .rightEncoderDirection(Encoder.FORWARD)
+            .strafeEncoderDirection(Encoder.FORWARD);
 
-    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
-            .rightFrontMotorName("rf")
-            .rightRearMotorName("rr")
-            .leftRearMotorName("lr")
-            .leftFrontMotorName("lf")
-            .leftFrontEncoderDirection(Encoder.FORWARD)
-            .leftRearEncoderDirection(Encoder.FORWARD)
-            .rightFrontEncoderDirection(Encoder.FORWARD)
-            .rightRearEncoderDirection(Encoder.FORWARD);
+//    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
+//            .rightFrontMotorName("rf")
+//            .rightRearMotorName("rr")
+//            .leftRearMotorName("lr")
+//            .leftFrontMotorName("lf")
+//            .leftFrontEncoderDirection(Encoder.REVERSE)
+//            .leftRearEncoderDirection(Encoder.REVERSE)
+//            .rightFrontEncoderDirection(Encoder.FORWARD)
+//            .rightRearEncoderDirection(Encoder.FORWARD)
+//            .robotWidth(12.5)
+//            .robotLength(10.25);
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
                 .pathConstraints(pathConstraints)
                 .mecanumDrivetrain(driveConstants)
-                .driveEncoderLocalizer(localizerConstants)
+                .threeWheelLocalizer(localizerConstants)
                 .build();
     }
 }
