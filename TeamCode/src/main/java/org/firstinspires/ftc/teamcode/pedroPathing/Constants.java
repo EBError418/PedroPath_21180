@@ -36,9 +36,9 @@ public class Constants {
             .leftEncoder_HardwareMapName("rf")
             .rightEncoder_HardwareMapName("lr")
             .strafeEncoder_HardwareMapName("rr")
-            .leftEncoderDirection(Encoder.FORWARD)
-            .rightEncoderDirection(Encoder.FORWARD)
-            .strafeEncoderDirection(Encoder.FORWARD);
+            .leftEncoderDirection(Encoder.REVERSE)
+            .rightEncoderDirection(Encoder.REVERSE)
+            .strafeEncoderDirection(Encoder.REVERSE);
 
 //    public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
 //            .rightFrontMotorName("rf")

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.pedroPathing;
 
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,6 +11,7 @@ import com.qualcomm.robotcore.hardware.HardwareDevice;
 import java.util.List;
 
 @TeleOp(name = "EncDeepDebug")
+@Disabled
 public class rawEncoderTest extends OpMode {
     private final String[] names = {"rf", "rr", "lr", "lf"};
     private final DcMotorEx[] motors = new DcMotorEx[4];
