@@ -39,7 +39,8 @@ public class Constants {
             .leftEncoderDirection(Encoder.REVERSE)
             .rightEncoderDirection(Encoder.REVERSE)
             .strafeEncoderDirection(Encoder.REVERSE)
-            .forwardTicksToInches(7.979*Math.pow(10, -4));
+            .forwardTicksToInches(7.979*Math.pow(10, -4))
+            .strafeTicksToInches(7.981*Math.pow(10,-4));
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
