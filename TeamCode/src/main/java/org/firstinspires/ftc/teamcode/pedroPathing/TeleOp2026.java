@@ -26,7 +26,7 @@ public class TeleOp2026 extends OpMode {
         follower.setTeleOpDrive(
                 gamepad1.left_stick_y,          // forward
                 gamepad1.left_stick_x,          // strafe
-                -gamepad1.right_stick_x,        // turn
+                gamepad1.right_stick_x,        // turn
                 true);                          // robot centric
         follower.update();
 
