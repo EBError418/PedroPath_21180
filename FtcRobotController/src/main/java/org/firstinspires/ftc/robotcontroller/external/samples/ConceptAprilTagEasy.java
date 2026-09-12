@@ -33,6 +33,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
+<<<<<<< HEAD
+=======
+import org.firstinspires.ftc.robotcore.external.hardware.camera.CameraCompatibilityManager;
+>>>>>>> origin/old-robot-test
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -77,9 +81,39 @@ public class ConceptAprilTagEasy extends LinearOpMode {
      */
     private VisionPortal visionPortal;
 
+<<<<<<< HEAD
     @Override
     public void runOpMode() {
 
+=======
+    // To find the VID/PID for a camera:
+    //
+    // Linux: open a terminal, run "lsusb", locate the line for your camera,
+    // and find the section that resembles "ID 1d6b:0002"; this is VID:PID
+    //
+    // OSX: open a terminal, run "system_profiler SPUSBDataType", locate the
+    // section for your camera, and find the "Product ID:" and "Vendor ID:"
+    // listings in the output
+    //
+    // Windows: open a PowerShell, run:
+    // Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -like 'USB*' } | Select-Object FriendlyName, InstanceId
+    // and locate the line for your camera. The VID and PID is listed directly in the line.
+    static final int VENDOR_ID_SUNPLUS_INNOVATION_TECHNOLOGY = 0x1BCF;
+    static final int PRODUCT_ID_ARDUCAM_OV5648 = 0x284C;
+
+    @Override
+    public void runOpMode() {
+
+        // Demonstrate how to add a camera compatibility quirk
+        // these can sometimes be needed if a camera behaves poorly.
+        // Quirks have no effect unless the camera you are using matches the specified VID/PID
+        CameraCompatibilityManager.getInstance()
+                .addQuirk(
+                        VENDOR_ID_SUNPLUS_INNOVATION_TECHNOLOGY,
+                        PRODUCT_ID_ARDUCAM_OV5648,
+                        CameraCompatibilityManager.Quirk.AVOID_LIB_USB_RESET_DEVICE);
+
+>>>>>>> origin/old-robot-test
         initAprilTag();
 
         // Wait for the DS start button to be touched.

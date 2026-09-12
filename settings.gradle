@@ -1,2 +1,13 @@
+<<<<<<< HEAD
+=======
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+>>>>>>> origin/old-robot-test
 include ':FtcRobotController'
 include ':TeamCode'

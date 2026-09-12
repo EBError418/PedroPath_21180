@@ -17,8 +17,11 @@
 
 import java.util.regex.Pattern
 
+<<<<<<< HEAD
 apply plugin: 'com.android.application'
 
+=======
+>>>>>>> origin/old-robot-test
 android {
 
     compileSdk 34

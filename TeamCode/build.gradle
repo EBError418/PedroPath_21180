@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+apply plugin: 'com.android.application'
+
+>>>>>>> origin/old-robot-test
 //
 // build.gradle in TeamCode
 //
@@ -8,13 +13,19 @@
 // please think carefully as to whether such customizations are really necessary
 // before doing so.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/old-robot-test
 // Custom definitions may go here
 
 // Include common definitions from above.
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
+<<<<<<< HEAD
 apply plugin: 'dev.frozenmilk.sinister.sloth.load'
+=======
+>>>>>>> origin/old-robot-test
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
@@ -24,6 +35,7 @@ android {
     }
 }
 
+<<<<<<< HEAD
 buildscript {
     repositories {
         mavenCentral()
@@ -46,6 +58,8 @@ dependencies {
     implementation("dev.frozenmilk.sinister:Sloth:0.2.4")
 }
 
+=======
+>>>>>>> origin/old-robot-test
 dependencies {
     implementation project(':FtcRobotController')
 }
